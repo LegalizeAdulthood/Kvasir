@@ -1335,6 +1335,25 @@ namespace ReceiveControl {
 
 using Addr = Register::Address<0x4000134, 0x00000000, 0x00000000, std::uint16_t>;
 
+constexpr ReadWriteField<Addr, unsigned, 0> scData{};
+constexpr ReadWriteField<Addr, unsigned, 1> sdData{};
+constexpr ReadWriteField<Addr, unsigned, 2> siData{};
+constexpr ReadWriteField<Addr, unsigned, 3> soData{};
+constexpr ReadWriteField<Addr, unsigned, 4> scDirection{};
+constexpr ReadWriteField<Addr, unsigned, 5> sdDirection{};
+constexpr ReadWriteField<Addr, unsigned, 6> siDirection{};
+constexpr ReadWriteField<Addr, unsigned, 7> soDirection{};
+constexpr ReadWriteFIeld<Addr, unsigned, 8> siInterruptEnabled{};
+enum class SerialIOMode {
+    normal = 0,
+    multiPlayer = 0,
+    uart = 0,
+    generalPurpose = 2,
+    joyBus = 3
+};
+constexpr ReadWriteField<Addr, SerialIOMode, 15, 14> mode{};
+
+
 }
 
 } // namespace Kvasir
