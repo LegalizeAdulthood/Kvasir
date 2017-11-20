@@ -15,10 +15,10 @@ using WriteOnlyfield = Register::FieldLocation<Addr, Register::maskFromRange(Hig
 
 namespace DisplayControl {
 
-using Addr = Register::Address<0x4000000, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000000, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Background Mode
-enum class BackgroundModes : uint8_t {
+enum class BackgroundModes : std::uint8_t {
     mode0 = 0,
     mode1,
     mode2,
@@ -29,7 +29,7 @@ enum class BackgroundModes : uint8_t {
 constexpr ReadWriteField<Addr, BackgroundModes, 2, 0> bgMode{};
 
 /// CGB Mode
-enum class CgbModes : uint8_t {
+enum class CgbModes : std::uint8_t {
     gbaMode = 0,
     cgbMode = 1
 };
@@ -42,7 +42,7 @@ constexpr ReadWriteField<Addr, unsigned, 4> displayFrameSelect{};
 constexpr ReadWriteField<Addr, unsigned, 5> hBlankIntervalFree{};
 
 /// OBJ Character VRAM Mapping
-enum class ObjCharacterVramMappingMode : uint8_t {
+enum class ObjCharacterVramMappingMode : std::uint8_t {
     twoDim = 0,
     oneDim = 1
 };
@@ -71,7 +71,7 @@ constexpr ReadWriteField<Addr, unsigned, 15> objWindowDisplayFlag{};
 
 namespace GreenSwap {
 
-using Addr = Register::Address<0x4000002, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000002, 0x00000000, 0x00000000, std::uint16_t>;
 
 enum class GreenSwapModes {
     normal = 0,
@@ -83,7 +83,7 @@ constexpr ReadWriteField<Addr, unsigned, 0> greenSwap{};
 
 namespace DisplayStatus {
 
-using Addr = Register::Address<0x4000004, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000004, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// V-Blank Flag
 constexpr ReadOnlyField<Addr, unsigned, 0> vertBlank{};
@@ -110,7 +110,7 @@ constexpr ReadWriteField<Addr, unsigned, 15, 8> vertCounterSetting{};
 
 namespace VerticalCounter {
 
-using Addr = Register::Address<0x4000006, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000006, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Current Scanline
 constexpr ReadOnlyField<Addr, unsigned, 7, 0> currentScanline{};
@@ -119,7 +119,7 @@ constexpr ReadOnlyField<Addr, unsigned, 7, 0> currentScanline{};
 
 namespace Bg0Control {
 
-using Addr = Register::Address<0x4000008, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000008, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// BG Priority
 constexpr ReadWriteField<Addr, unsigned, 1, 0> bgPriority{};
@@ -146,7 +146,7 @@ constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
 
 namespace Bg1Control {
 
-using Addr = Register::Address<0x400000A, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x400000A, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// BG Priority
 constexpr ReadWriteField<Addr, unsigned, 1, 0> bgPriority{};
@@ -173,7 +173,7 @@ constexpr Register::FieldLocation<Addr, Register::maskFromRange(15, 14), Registe
 
 namespace Bg2Control {
 
-using Addr = Register::Address<0x400000C, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x400000C, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// BG Priority
 constexpr ReadWriteField<Addr, unsigned, 1, 0> bgPriority{};
@@ -200,7 +200,7 @@ constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
 
 namespace Bg3Control {
 
-using Addr = Register::Address<0x400000E, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x400000E, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// BG Priority
 constexpr ReadWriteField<Addr, unsigned, 1, 0> bgPriority{};
@@ -227,7 +227,7 @@ constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
 
 namespace Bg0HorizOffset {
 
-using Addr = Register::Address<0x4000010, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000010, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
@@ -236,7 +236,7 @@ constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 namespace Bg0VertOffset {
 
-using Addr = Register::Address<0x4000012, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000012, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
@@ -245,7 +245,7 @@ constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 namespace Bg1HorizOffset {
 
-using Addr = Register::Address<0x4000014, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000014, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
@@ -254,7 +254,7 @@ constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 namespace Bg1VertOffset {
 
-using Addr = Register::Address<0x4000016, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000016, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
@@ -263,7 +263,7 @@ constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 namespace Bg2HorizOffset {
 
-using Addr = Register::Address<0x4000018, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000018, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
@@ -272,7 +272,7 @@ constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 namespace Bg2VertOffset {
 
-using Addr = Register::Address<0x400001A, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x400001A, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
@@ -281,7 +281,7 @@ constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 namespace Bg3HorizOffset {
 
-using Addr = Register::Address<0x400001C, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x400001C, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
@@ -290,16 +290,76 @@ constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 namespace Bg3VertOffset {
 
-using Addr = Register::Address<0x400001E, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x400001E, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Offset
 constexpr WriteOnlyField<Addr, unsigned, 8, 0> offset{};
 
 }
 
+namespace Bg2InternalParameterA {
+
+using Addr = Register::Address<0x4000020, 0x00000000, 0x00000000, std::uint16_t>;
+
+/// Fraction
+constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
+
+/// Integer
+constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
+
+/// Sign
+constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+}
+
+namespace Bg2InternalParameterB {
+
+using Addr = Register::Address<0x4000022, 0x00000000, 0x00000000, std::uint16_t>;
+
+/// Fraction
+constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
+
+/// Integer
+constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
+
+/// Sign
+constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+}
+
+namespace Bg2InternalParameterC {
+
+using Addr = Register::Address<0x4000024, 0x00000000, 0x00000000, std::uint16_t>;
+
+/// Fraction
+constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
+
+/// Integer
+constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
+
+/// Sign
+constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+}
+
+namespace Bg2InternalParameterD {
+
+using Addr = Register::Address<0x4000026, 0x00000000, 0x00000000, std::uint16_t>;
+
+/// Fraction
+constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
+
+/// Integer
+constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
+
+/// Sign
+constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+}
+
 namespace Bg2XReference {
 
-using Addr = Register::Address<0x4000028, 0x00000000, 0x00000000, uint32_t>;
+using Addr = Register::Address<0x4000028, 0x00000000, 0x00000000, std::uint32_t>;
 
 /// Fraction
 constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
@@ -318,7 +378,7 @@ constexpr ReadWriteField<Addr, unsigned, 27, 0> value{};
 
 namespace Bg2YReference {
 
-using Addr = Register::Address<0x400002C, 0x00000000, 0x00000000, uint32_t>;
+using Addr = Register::Address<0x400002C, 0x00000000, 0x00000000, std::uint32_t>;
 
 /// Fraction
 constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
@@ -335,24 +395,9 @@ constexpr ReadWriteField<Addr, unsigned, 27, 0> value{};
 
 }
 
-namespace Bg2InternalParameterA {
+namespace Bg3InternalParameterA {
 
-using Addr = Register::Address<0x4000020, 0x00000000, 0x00000000, uint16_t>;
-
-/// Fraction
-constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
-
-/// Integer
-constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
-
-/// Sign
-constexpr ReadWriteField<Addr, unsigned, 15> sign{};
-
-}
-
-namespace Bg2InternalParameterB {
-
-using Addr = Register::Address<0x4000022, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000030, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Fraction
 constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
@@ -365,9 +410,9 @@ constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
 }
 
-namespace Bg2InternalParameterC {
+namespace Bg3InternalParameterB {
 
-using Addr = Register::Address<0x4000024, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000032, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Fraction
 constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
@@ -380,9 +425,9 @@ constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
 }
 
-namespace Bg2InternalParameterD {
+namespace Bg3InternalParameterC {
 
-using Addr = Register::Address<0x4000026, 0x00000000, 0x00000000, uint16_t>;
+using Addr = Register::Address<0x4000034, 0x00000000, 0x00000000, std::uint16_t>;
 
 /// Fraction
 constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
@@ -392,6 +437,494 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+}
+
+namespace Bg3InternalParameterD {
+
+using Addr = Register::Address<0x4000036, 0x00000000, 0x00000000, std::uint16_t>;
+
+/// Fraction
+constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
+
+/// Integer
+constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
+
+/// Sign
+constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+}
+
+namespace Bg3XReference {
+
+using Addr = Register::Address<0x4000038, 0x00000000, 0x00000000, std::uint32_t>;
+
+/// Fraction
+constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
+
+/// Integer
+constexpr ReadWriteField<Addr, unsigned, 26, 8> integer{};
+
+/// Sign
+constexpr ReadWriteField<Addr, unsigned, 27> sign{};
+
+// TODO: Construct a class to encapsulate math and conversion on these field-point values
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 27, 0> value{};
+
+}
+
+namespace Bg3YReference {
+
+using Addr = Register::Address<0x400003C, 0x00000000, 0x00000000, std::uint32_t>;
+
+/// Fraction
+constexpr ReadWriteField<Addr, unsigned, 7, 0> fraction{};
+
+/// Integer
+constexpr ReadWriteField<Addr, unsigned, 26, 8> integer{};
+
+/// Sign
+constexpr ReadWriteField<Addr, unsigned, 27> sign{};
+
+// TODO: Construct a class to encapsulate math and conversion on these field-point values
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 27, 0> value{};
+
+}
+
+namespace Window0HorizontalExtent {
+
+using Addr = Register::Address<0x4000040, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 7, 0> x2{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 8> x1{};
+
+}
+
+namespace Window1HorizontalExtent {
+
+using Addr = Register::Address<0x4000042, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 7, 0> x2{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 8> x1{};
+
+}
+
+namespace Window0VerticalExtent {
+
+using Addr = Register::Address<0x4000044, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
+
+}
+
+namespace Window1VerticalExtent {
+
+using Addr = Register::Address<0x4000046, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
+
+}
+
+namespace WindowInsideControl {
+
+using Addr = Register::Address<0x4000048, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 0> window0EnableBg0{};
+constexpr ReadWriteField<Addr, unsigned, 1> window0EnableBg1{};
+constexpr ReadWriteField<Addr, unsigned, 2> window0EnableBg2{};
+constexpr ReadWriteField<Addr, unsigned, 3> window0EnableBg3{};
+constexpr ReadWriteField<Addr, unsigned, 4> window0EnableObj{};
+constexpr ReadWriteField<Addr, unsigned, 5> window0EnableColorSpecialEffect{};
+
+constexpr ReadWriteField<Addr, unsigned, 8> window1EnableBg0{};
+constexpr ReadWriteField<Addr, unsigned, 9> window1EnableBg1{};
+constexpr ReadWriteField<Addr, unsigned, 10> window1EnableBg2{};
+constexpr ReadWriteField<Addr, unsigned, 11> window1EnableBg3{};
+constexpr ReadWriteField<Addr, unsigned, 12> window1EnableObj{};
+constexpr ReadWriteField<Addr, unsigned, 13> window1EnableColorSpecialEffect{};
+
+}
+
+namespace WindowOutsideControl {
+
+using Addr = Register::Address<0x400004A, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 0> enableBg0{};
+constexpr ReadWriteField<Addr, unsigned, 1> enableBg1{};
+constexpr ReadWriteField<Addr, unsigned, 2> enableBg2{};
+constexpr ReadWriteField<Addr, unsigned, 3> enableBg3{};
+constexpr ReadWriteField<Addr, unsigned, 4> enableObj{};
+constexpr ReadWriteField<Addr, unsigned, 5> enableColorSpecialEffect{};
+
+constexpr ReadWriteField<Addr, unsigned, 8> objWindowEnableBg0{};
+constexpr ReadWriteField<Addr, unsigned, 9> objWindowEnableBg1{};
+constexpr ReadWriteField<Addr, unsigned, 10> objWindowEnableBg2{};
+constexpr ReadWriteField<Addr, unsigned, 11> objWindowEnableBg3{};
+constexpr ReadWriteField<Addr, unsigned, 12> objWindowEnableObj{};
+constexpr ReadWriteField<Addr, unsigned, 13> objWindowEnableColorSpecialEffect{};
+
+}
+
+namespace MosaicSize {
+
+using Addr = Register::Address<0x400004C, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 3, 0> bgMosaicWidth{};
+constexpr WriteOnlyField<Addr, unsigned, 7, 4> bgMosaicHeight{};
+constexpr WriteOnlyField<Addr, unsigned, 11, 8> objMosaicWidth{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 12> objMosaicHeight{};
+
+}
+
+namespace ColorSpecialEffectsSelection {
+
+using Addr = Register::Address<0x4000050, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 0> bg0FirstTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 1> bg1FirstTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 2> bg2FirstTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 3> bg3FirstTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 4> objFirstTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 5> backdropFirstTargetPixel{};
+enum class ColorSpecialEffects : std::uint8_t {
+    none = 0,
+    alphaBlending = 1,
+    brightnessIncrease = 2,
+    brightnessDecrease = 3
+};
+constexpr ReadWriteField<Addr, ColorSpecialEffects, 7, 6> colorSpecialEffect{};
+constexpr ReadWriteField<Addr, unsigned, 8> bg0SecondTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 9> bg1SecondTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 10> bg2SecondTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 11> bg3SecondTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 12> objSecondTargetPixel{};
+constexpr ReadWriteField<Addr, unsigned, 13> backdropSecondTargetPixel{};
+
+}
+
+namespace AlphaBlendingCoefficients {
+
+using Addr = Register::Address<0x4000052, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 4, 0> evACoefficient{};
+constexpr WriteOnlyField<Addr, unsigned, 12, 8> evBCoefficient{};
+
+}
+
+namespace Brightness {
+
+using Addr = Register::Address<0x4000054, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 4, 0> evYCoefficient{};
+
+}
+
+namespace Sound1ControlSweep {
+
+using Addr = Register::Address<0x4000060, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 2, 0> numSweepShift{};
+enum class SweepFrequencyDirections : std::uint8_t {
+    increase = 0,
+    decrease = 1
+};
+constexpr ReadWriteField<Addr, SweepFrequencyDirections, 3> sweepFrequencyDirection{};
+constexpr ReadWriteField<Addr, unsigned, 6, 4> sweepTime{};
+
+}
+
+namespace Sound1ControlEnvelope {
+
+using Addr = Register::Address<0x4000062, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 5, 0> length{};
+constexpr ReadWriteField<Addr, unsigned, 7, 6> wavePatternDuty{};
+constexpr ReadWriteField<Addr, unsigned, 10, 8> envelopeStepTime{};
+enum class EnvelopeDirections {
+    decrease = 0,
+    increase = 1
+};
+constexpr ReadWriteField<Addr, EnvelopeDirections, 11> envelopeDirection{};
+constexpr ReadWriteField<Addr, unsigend, 15, 12> envelopeInitialVolume{};
+
+}
+
+namespace Sound1ControlFrequency {
+
+using Addr = Register::Address<0x4000064, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 10, 0> frequency{};
+constexpr ReadWriteField<Addr, unsigned, 14> lengthFlag{};
+constexpr ReadWriteField<Addr, unsigned, 15> initial{}; 
+
+}
+
+namespace Sound2ControlSweep {
+
+using Addr = Register::Address<0x4000068, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 2, 0> numSweepShift{};
+enum class SweepFrequencyDirections : std::uint8_t {
+    increase = 0,
+    decrease = 1
+};
+constexpr ReadWriteField<Addr, SweepFrequencyDirections, 3> sweepFrequencyDirection{};
+constexpr ReadWriteField<Addr, unsigned, 6, 4> sweepTime{};
+
+}
+
+namespace Sound2ControlEnvelope {
+
+using Addr = Register::Address<0x400006A, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 5, 0> length{};
+constexpr ReadWriteField<Addr, unsigned, 7, 6> wavePatternDuty{};
+constexpr ReadWriteField<Addr, unsigned, 10, 8> envelopeStepTime{};
+enum class EnvelopeDirections {
+    decrease = 0,
+    increase = 1
+};
+constexpr ReadWriteField<Addr, EnvelopeDirections, 11> envelopeDirection{};
+constexpr ReadWriteField<Addr, unsigend, 15, 12> envelopeInitialVolume{};
+
+}
+
+namespace Sound2ControlFrequency {
+
+using Addr = Register::Address<0x400006C, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 10, 0> frequency{};
+constexpr ReadWriteField<Addr, unsigned, 14> lengthFlag{};
+constexpr ReadWriteField<Addr, unsigned, 15> initial{}; 
+
+}
+
+namespace Sound3ControlWave {
+
+using Addr = Register::Address<0x4000070, 0x00000000, 0x00000000, std::uint16_t>;
+
+enum class WaveRamDImensions {
+    oneBank = 0,
+    twoBank = 1
+};
+constexpr ReadWriteField<Addr, WaveRamDImensions, 5> waveRamDimension{};
+constexpr ReadWriteField<Addr, unsigned, 6> waveRamBankNumber{};
+enum class Channel3Control {
+    stop = 0,
+    playback = 1
+};
+constexpr ReadWriteField<Addr, Channel3Control, 7> channel3Off{};
+
+}
+
+namespace Sound3ControlVolume {
+
+using Addr = Register::Address<0x4000072, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 7, 0> length{};
+enum class Volume {
+    mute = 0,
+    percent100 = 1,
+    percent50 = 2,
+    percent25 = 3
+};
+constexpr ReadWriteField<Addr, Volume, 14, 13> volume{}; 
+enum class ForceVolume {
+    noForcing = 0,
+    force75Percent = 1
+};
+constexpr ReadWriteField<Addr, ForceVolume, 15> forceVolume{};
+
+}
+
+namespace Sound3ControlFrequency {
+
+using Addr = Register::Address<0x4000074, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 10, 0> sampleRate{};
+constexpr ReadWriteField<Addr, unsigned, 14> lengthFlag{};
+enum class Initial {
+    restart = 1
+};
+constexpr WriteOnlyField<Addr, Initial, 15> initial{}; 
+
+}
+
+namespace Sound3WavePatternRam0Low {
+
+using Addr = Register::Address<0x4000090, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound3WavePatternRam0High {
+
+using Addr = Register::Address<0x4000092, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound3WavePatternRam1Low {
+
+using Addr = Register::Address<0x4000094, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound3WavePatternRam1High {
+
+using Addr = Register::Address<0x4000096, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound3WavePatternRam2Low {
+
+using Addr = Register::Address<0x4000098, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound3WavePatternRam2High {
+
+using Addr = Register::Address<0x400009A, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound3WavePatternRam3Low {
+
+using Addr = Register::Address<0x400009C, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound3WavePatternRam3High {
+
+using Addr = Register::Address<0x400009E, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, std::uint16_t, 15, 0> pattern{};
+
+}
+
+namespace Sound4ControlEnvelope {
+
+using Addr = Register::Address<0x4000078, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 5, 0> length{};
+constexpr ReadWriteField<Addr, unsigned, 10, 8> envelopStepTime{};
+enum class EnvelopeDirections {
+    decrease = 0,
+    increase = 1
+};
+constexpr ReadWriteField<Addr, EnvelopeDirections, 11> envelopeDirection{};
+constexpr ReadWritefield<Addr, unsigned, 15, 12> initialVolume{};
+
+}
+
+namespace Sound4ControlFrequency {
+
+using Addr = Register::Address<0x400007C, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 2, 0> dividingRatio{};
+enum class CounterStepBits {
+    fifteen = 0,
+    seven = 1
+};
+constexpr ReadWriteField<Addr, CounterStepBits, 3> counterStep{};
+constexpr ReadWriteField<Addr, unsigned, 7, 4> shiftClockFrequency{};
+constexpr ReadWriteField<Addr, unsigned, 14> lengthFlag{};
+enum class Initial {
+    restart = 1
+};
+constexpr ReadWriteField<Addr, Initial, 15> initial{};
+
+}
+
+namespace SoundAFifoData {
+
+using Addr = Register::Address<0x40000A0, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace SoundBFifoData {
+
+using Addr = Register::Address<0x40000A4, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace SoundVolume {
+
+using Addr = Register::Address<0x4000080, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 2, 0> volumeRight{};
+constexpr ReadWriteField<Addr, unsigned, 6, 4> volumeLeft{};
+constexpr ReadWriteField<Addr, unsigned, 8> sound1EnableRight{};
+constexpr ReadWriteField<Addr, unsigned, 9> sound2EnableRight{};
+constexpr ReadWriteField<Addr, unsigned, 10> sound3EnableRight{};
+constexpr ReadWriteField<Addr, unsigned, 11> sound4EnableRight{};
+constexpr ReadWriteField<Addr, unsigned, 12> sound1EnableLeft{};
+constexpr ReadWriteField<Addr, unsigned, 13> sound2EnableLeft{};
+constexpr ReadWriteField<Addr, unsigned, 14> sound3EnableLeft{};
+constexpr ReadWriteField<Addr, unsigned, 15> sound4EnableLeft{};
+
+}
+
+namespace SoundControl {
+
+using Addr = Register::Address<0x4000082, 0x00000000, 0x00000000, std::uint32_t>;
+
+enum class Volume {
+    percent25 = 0,
+    percent50 = 1,
+    percent100 = 2
+};
+constexpr ReadWriteField<Addr, Volume, 2, 0> volume{};
+enum class DmaVolume {
+    percent50 = 0,
+    percent100 = 1
+};
+constexpr ReadWriteField<Addr, DmaVolume, 3> dmaSoundAVolume{};
+constexpr ReadWriteField<Addr, DmaVolume, 4> dmaSoundBVolume{};
+constexpr ReadWriteField<Addr, unsigned, 8> dmaSoundAEnableRight{};
+constexpr ReadWriteField<Addr, unsigned, 9> dmaSoundAEnableLeft{};
+enum class DmaTimer {
+    timer0 = 0,
+    timer1 = 1
+};
+constexpr ReadWriteField<Addr, DmaTimer, 10> dmaSoundATimerSelect{};
+constexpr ReadWriteField<Addr, unsigned, 11> dmaSoundAResetFifo{};
+constexpr ReadWriteField<Addr, unsigned, 12> dmaSoundBEnableRight{};
+constexpr ReadWriteField<Addr, unsigned, 13> dmaSoundBEnableLeft{};
+constexpr ReadWriteField<Addr, DmaTimer, 14> dmaSoundBTimerSelect{};
+constexpr ReadWriteField<Addr, unsigned, 15> dmaSoundBResetFifo{};
+
+}
+
+namespace SoundOnOff {
+
+using Addr = Register::Address<0x4000084, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr ReadOnlyFlag<Addr, unsigned, 0> sound1On{};
+constexpr ReadOnlyFlag<Addr, unsigned, 1> sound2On{};
+constexpr ReadOnlyFlag<Addr, unsigned, 2> sound3On{};
+constexpr ReadOnlyFlag<Addr, unsigned, 3> sound4On{};
+constexpr ReadWriteFlag<Addr, unsigned, 7> psgFifoMasterEnable{};
 
 }
 
