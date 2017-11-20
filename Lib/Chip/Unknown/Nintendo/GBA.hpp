@@ -852,22 +852,6 @@ constexpr ReadWriteField<Addr, Initial, 15> initial{};
 
 }
 
-namespace SoundAFifoData {
-
-using Addr = Register::Address<0x40000A0, 0x00000000, 0x00000000, std::uint32_t>;
-
-constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
-
-}
-
-namespace SoundBFifoData {
-
-using Addr = Register::Address<0x40000A4, 0x00000000, 0x00000000, std::uint32_t>;
-
-constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
-
-}
-
 namespace SoundVolume {
 
 using Addr = Register::Address<0x4000080, 0x00000000, 0x00000000, std::uint32_t>;
@@ -937,90 +921,19 @@ constexpr ReadWriteField<Addr, unsigned, 15, 14> amplitude{};
 
 }
 
-enum class PreScale {
-    freq = 0,
-    freqDiv64 = 1,
-    freqDiv256 = 2,
-    freqDiv1024 = 3
-};
-enum class CountUpTiming {
-    normal = 0,
-    countUp = 1
-};
+namespace SoundAFifoData {
 
-namespace Timer0Counter {
+using Addr = Register::Address<0x40000A0, 0x00000000, 0x00000000, std::uint32_t>;
 
-using Addr = Register::Address<0x4000100, 0x00000000, 0x00000000, std::uint16_t>;
-
-constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
 
 }
 
-namespace Timer0Control {
+namespace SoundBFifoData {
 
-using Addr = Register::Address<0x4000102, 0x00000000, 0x00000000, std::uint16_t>;
+using Addr = Register::Address<0x40000A4, 0x00000000, 0x00000000, std::uint32_t>;
 
-constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
-constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
-constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
-constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
-
-}
-
-namespace Timer1Counter {
-
-using Addr = Register::Address<0x4000104, 0x00000000, 0x00000000, std::uint16_t>;
-
-constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
-
-}
-
-namespace Timer1Control {
-
-using Addr = Register::Address<0x4000106, 0x00000000, 0x00000000, std::uint16_t>;
-
-constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
-constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
-constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
-constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
-
-}
-
-namespace Timer2Counter {
-
-using Addr = Register::Address<0x4000108, 0x00000000, 0x00000000, std::uint16_t>;
-
-constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
-
-}
-
-namespace Timer2Control {
-
-using Addr = Register::Address<0x400010A, 0x00000000, 0x00000000, std::uint16_t>;
-
-constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
-constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
-constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
-constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
-
-}
-
-namespace Timer3Counter {
-
-using Addr = Register::Address<0x400010C, 0x00000000, 0x00000000, std::uint16_t>;
-
-constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
-
-}
-
-namespace Timer3Control {
-
-using Addr = Register::Address<0x400010E, 0x00000000, 0x00000000, std::uint16_t>;
-
-constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
-constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
-constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
-constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
 
 }
 
@@ -1198,6 +1111,181 @@ constexpr WriteOnlyField<Addr, DmaGamePack, 11> gamePackDrq{};
 constexpr WriteOnlyField<Addr, DmaStartTiming, 13, 12> startTiming{};
 constexpr WriteOnlyField<Addr, unsigned, 14> irqOnEndEnabled{};
 constexpr WriteOnlyField<Addr, unsigned, 15> enabled{};
+
+}
+
+enum class PreScale {
+    freq = 0,
+    freqDiv64 = 1,
+    freqDiv256 = 2,
+    freqDiv1024 = 3
+};
+enum class CountUpTiming {
+    normal = 0,
+    countUp = 1
+};
+
+namespace Timer0Counter {
+
+using Addr = Register::Address<0x4000100, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer0Control {
+
+using Addr = Register::Address<0x4000102, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+namespace Timer1Counter {
+
+using Addr = Register::Address<0x4000104, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer1Control {
+
+using Addr = Register::Address<0x4000106, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+namespace Timer2Counter {
+
+using Addr = Register::Address<0x4000108, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer2Control {
+
+using Addr = Register::Address<0x400010A, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+namespace Timer3Counter {
+
+using Addr = Register::Address<0x400010C, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer3Control {
+
+using Addr = Register::Address<0x400010E, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+namespace SerialIOData32 {
+
+using Addr = Register::Address<0x4000120, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 31, 0> value{};
+
+}
+
+namespace SerialIOMultiportData0 {
+
+using Addr = Register::Address<0x4000120, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace SerialIOMultiportData1 {
+
+using Addr = Register::Address<0x4000122, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace SerialIOMultiportData2 {
+
+using Addr = Register::Address<0x4000124, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace SerialIOMultiportData3 {
+
+using Addr = Register::Address<0x4000126, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace SerialIOControl {
+
+using Addr = Register::Address<0x4000128, 0x00000000, 0x00000000, std::uint16_t>;
+
+enum class ShiftClock {
+    external = 0,
+    internal = 1
+};
+constexpr ReadWriteField<Addr, ShiftClock, 0> shiftClock{};
+enum class InternalShiftClock {
+    twoFiftySixKiloHz = 0,
+    twoMegaHz = 1
+};
+constexpr ReadWriteField<Addr, InternalShiftClock, 1> internalShiftClock{};
+constexpr ReadWriteField<Addr, unsigned, 2> siState{};
+constexpr ReadWriteField<Addr, unsigned, 3> soDuringInactivity{};
+constexpr ReadWriteField<Addr, unsigned, 7> startBit{};
+enum class TransferLength {
+    eightBit = 0,
+    thirtyTwoBit,
+};
+constexpr ReadWriteField<Addr, TransferLength, 12> transferLength{};
+constexpr ReadWriteField<Addr, unsigned, 14> irqEnabled{};
+
+}
+
+namespace SerialIOMultiPlayerSend {
+
+using Addr = Register::Address<0x400012A, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace SerialIOData8 {
+
+using Addr = Register::Address<0x400012A, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 7, 0> value{};
+
+}
+
+namespace ReceiveControl {
+
+using Addr = Register::Address<0x4000134, 0x00000000, 0x00000000, std::uint16_t>;
 
 }
 
