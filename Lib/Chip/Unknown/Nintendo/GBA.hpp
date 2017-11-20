@@ -920,11 +920,284 @@ namespace SoundOnOff {
 
 using Addr = Register::Address<0x4000084, 0x00000000, 0x00000000, std::uint32_t>;
 
-constexpr ReadOnlyFlag<Addr, unsigned, 0> sound1On{};
-constexpr ReadOnlyFlag<Addr, unsigned, 1> sound2On{};
-constexpr ReadOnlyFlag<Addr, unsigned, 2> sound3On{};
-constexpr ReadOnlyFlag<Addr, unsigned, 3> sound4On{};
-constexpr ReadWriteFlag<Addr, unsigned, 7> psgFifoMasterEnable{};
+constexpr ReadOnlyField<Addr, unsigned, 0> sound1On{};
+constexpr ReadOnlyField<Addr, unsigned, 1> sound2On{};
+constexpr ReadOnlyField<Addr, unsigned, 2> sound3On{};
+constexpr ReadOnlyField<Addr, unsigned, 3> sound4On{};
+constexpr ReadWriteField<Addr, unsigned, 7> psgFifoMasterEnable{};
+
+}
+
+namespace SoundPwmControl {
+
+using Addr = Register::Address<0x4000088, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 9, 0> biasLevel{};
+constexpr ReadWriteField<Addr, unsigned, 15, 14> amplitude{};
+
+}
+
+enum class PreScale {
+    freq = 0,
+    freqDiv64 = 1,
+    freqDiv256 = 2,
+    freqDiv1024 = 3
+};
+enum class CountUpTiming {
+    normal = 0,
+    countUp = 1
+};
+
+namespace Timer0Counter {
+
+using Addr = Register::Address<0x4000100, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer0Control {
+
+using Addr = Register::Address<0x4000102, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+namespace Timer1Counter {
+
+using Addr = Register::Address<0x4000104, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer1Control {
+
+using Addr = Register::Address<0x4000106, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+namespace Timer2Counter {
+
+using Addr = Register::Address<0x4000108, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer2Control {
+
+using Addr = Register::Address<0x400010A, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+namespace Timer3Counter {
+
+using Addr = Register::Address<0x400010C, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
+}
+
+namespace Timer3Control {
+
+using Addr = Register::Address<0x400010E, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr ReadWriteField<Addr, PreScale, 1, 0> preScale{};
+constexpr ReadWriteField<Addr, CountUpTiming, 2> countUpEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 6> timerIrqEnable{};
+constexpr ReadWriteField<Addr, unsigned, 7> timerStartStop{};
+
+}
+
+enum class DmaAddressControl {
+    increment = 0,
+    decrement = 1,
+    fixed = 2,
+    incrementReload = 3
+};
+enum class DmaTransferType {
+    sixteenBit = 0,
+    thirtyTwoBit = 1
+};
+enum class DmaGamePack {
+    normal = 0,
+    drqFromGamePack = 1
+};
+enum class DmaStartTiming {
+    immediately = 0,
+    verticalBlank = 1,
+    horizontalBlank = 2,
+    special = 3
+};
+
+namespace Dma0SourceAddress {
+
+using Addr = Register::Address<0x40000B0, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma0DestinationAddress {
+
+using Addr = Register::Address<0x40000B4, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma0WordCount {
+
+using Addr = Register::Address<0x40000B8, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 13, 0> value{};
+
+}
+
+namespace Dma0Control {
+
+using Addr = Register::Address<0x40000BA, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, DmaAddressControl, 6, 5> destinationAddressControl{};
+constexpr WriteOnlyField<Addr, DmaAddressControl, 8, 7> sourceAddressControl{};
+constexpr WriteOnlyField<Addr, unsigned, 9> repeat{};
+constexpr WriteOnlyField<Addr, DmaTransferType, 10> transferType{};
+constexpr WriteOnlyField<Addr, DmaGamePack, 11> gamePackDrq{};
+constexpr WriteOnlyField<Addr, DmaStartTiming, 13, 12> startTiming{};
+constexpr WriteOnlyField<Addr, unsigned, 14> irqOnEndEnabled{};
+constexpr WriteOnlyField<Addr, unsigned, 15> enabled{};
+
+}
+
+namespace Dma1SourceAddress {
+
+using Addr = Register::Address<0x40000BC, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma1DestinationAddress {
+
+using Addr = Register::Address<0x40000C0, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma1WordCount {
+
+using Addr = Register::Address<0x40000C4, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 13, 0> value{};
+
+}
+
+namespace Dma1Control {
+
+using Addr = Register::Address<0x40000C6, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, DmaAddressControl, 6, 5> destinationAddressControl{};
+constexpr WriteOnlyField<Addr, DmaAddressControl, 8, 7> sourceAddressControl{};
+constexpr WriteOnlyField<Addr, unsigned, 9> repeat{};
+constexpr WriteOnlyField<Addr, DmaTransferType, 10> transferType{};
+constexpr WriteOnlyField<Addr, DmaGamePack, 11> gamePackDrq{};
+constexpr WriteOnlyField<Addr, DmaStartTiming, 13, 12> startTiming{};
+constexpr WriteOnlyField<Addr, unsigned, 14> irqOnEndEnabled{};
+constexpr WriteOnlyField<Addr, unsigned, 15> enabled{};
+
+}
+
+namespace Dma2SourceAddress {
+
+using Addr = Register::Address<0x40000C8, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma2DestinationAddress {
+
+using Addr = Register::Address<0x40000CC, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma2WordCount {
+
+using Addr = Register::Address<0x40000D0, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 13, 0> value{};
+
+}
+
+namespace Dma2Control {
+
+using Addr = Register::Address<0x40000D2, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, DmaAddressControl, 6, 5> destinationAddressControl{};
+constexpr WriteOnlyField<Addr, DmaAddressControl, 8, 7> sourceAddressControl{};
+constexpr WriteOnlyField<Addr, unsigned, 9> repeat{};
+constexpr WriteOnlyField<Addr, DmaTransferType, 10> transferType{};
+constexpr WriteOnlyField<Addr, DmaGamePack, 11> gamePackDrq{};
+constexpr WriteOnlyField<Addr, DmaStartTiming, 13, 12> startTiming{};
+constexpr WriteOnlyField<Addr, unsigned, 14> irqOnEndEnabled{};
+constexpr WriteOnlyField<Addr, unsigned, 15> enabled{};
+
+}
+
+namespace Dma3SourceAddress {
+
+using Addr = Register::Address<0x40000D4, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma3DestinationAddress {
+
+using Addr = Register::Address<0x40000D8, 0x00000000, 0x00000000, std::uint32_t>;
+
+constexpr WriteOnlyField<Addr, std::uint32_t, 31, 0> value{};
+
+}
+
+namespace Dma3WordCount {
+
+using Addr = Register::Address<0x40000DC, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, unsigned, 13, 0> value{};
+
+}
+
+namespace Dma3Control {
+
+using Addr = Register::Address<0x40000DE, 0x00000000, 0x00000000, std::uint16_t>;
+
+constexpr WriteOnlyField<Addr, DmaAddressControl, 6, 5> destinationAddressControl{};
+constexpr WriteOnlyField<Addr, DmaAddressControl, 8, 7> sourceAddressControl{};
+constexpr WriteOnlyField<Addr, unsigned, 9> repeat{};
+constexpr WriteOnlyField<Addr, DmaTransferType, 10> transferType{};
+constexpr WriteOnlyField<Addr, DmaGamePack, 11> gamePackDrq{};
+constexpr WriteOnlyField<Addr, DmaStartTiming, 13, 12> startTiming{};
+constexpr WriteOnlyField<Addr, unsigned, 14> irqOnEndEnabled{};
+constexpr WriteOnlyField<Addr, unsigned, 15> enabled{};
 
 }
 
