@@ -1283,6 +1283,54 @@ constexpr ReadWriteField<Addr, unsigned, 7, 0> value{};
 
 }
 
+namespace KeypadInput {
+
+using Addr = Register::Address<0x4000130, 0x00000000, 0x00000000, std::uint16_t>;
+
+enum class ButtonState {
+    pressed = 0,
+    released = 1
+};
+constexpr ReadOnlyField<Addr, ButtonState, 0> buttonA{};
+constexpr ReadOnlyField<Addr, ButtonState, 1> buttonB{};
+constexpr ReadOnlyField<Addr, ButtonState, 2> buttonSelect{};
+constexpr ReadOnlyField<Addr, ButtonState, 3> buttonStart{};
+constexpr ReadOnlyField<Addr, ButtonState, 4> buttonRight{};
+constexpr ReadOnlyField<Addr, ButtonState, 5> buttonLeft{};
+constexpr ReadOnlyField<Addr, ButtonState, 6> buttonUp{};
+constexpr ReadOnlyField<Addr, ButtonState, 7> buttonDown{};
+constexpr ReadOnlyField<Addr, ButtonState, 8> buttonRight{};
+constexpr ReadOnlyField<Addr, ButtonState, 9> buttonLeft{};
+
+}
+
+namespace KeyInterruptControl {
+
+using Addr = Register::Address<0x4000130, 0x00000000, 0x00000000, std::uint16_t>;
+
+enum class Interrupt {
+    ignore = 0,
+    select = 1
+};
+constexpr ReadWriteField<Addr, Interrupt, 0> buttonA{};
+constexpr ReadWriteField<Addr, Interrupt, 1> buttonB{};
+constexpr ReadWriteField<Addr, Interrupt, 2> buttonSelect{};
+constexpr ReadWriteField<Addr, Interrupt, 3> buttonStart{};
+constexpr ReadWriteField<Addr, Interrupt, 4> buttonRight{};
+constexpr ReadWriteField<Addr, Interrupt, 5> buttonLeft{};
+constexpr ReadWriteField<Addr, Interrupt, 6> buttonUp{};
+constexpr ReadWriteField<Addr, Interrupt, 7> buttonDown{};
+constexpr ReadWriteField<Addr, Interrupt, 8> buttonRight{};
+constexpr ReadWriteField<Addr, Interrupt, 9> buttonLeft{};
+constexpr ReadWriteField<Addr, unsigned, 14> irqEnabled{};
+enum class IrqCondition {
+    logicalOr = 0,
+    logicalAnd = 1
+};
+constexpr ReadWriteField<Addr, IrqCondition, 15> irqCondition{};
+
+}
+
 namespace ReceiveControl {
 
 using Addr = Register::Address<0x4000134, 0x00000000, 0x00000000, std::uint16_t>;
