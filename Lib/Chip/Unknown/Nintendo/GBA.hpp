@@ -8,10 +8,10 @@ template <typename Addr, typename FieldType, int High, int Low = High>
 using ReadWriteField = Register::FieldLocation<Addr, Register::maskFromRange(High, Low), Register::ReadWriteAccess, FieldType>;
 
 template <typename Addr, typename FieldType, int High, int Low = High>
-using ReadOnlyfield = Register::FieldLocation<Addr, Register::maskFromRange(High, Low), Register::ReadOnlyAccess, FieldType>;
+using ReadOnlyField = Register::FieldLocation<Addr, Register::maskFromRange(High, Low), Register::ReadOnlyAccess, FieldType>;
 
 template <typename Addr, typename FieldType, int High, int Low = High>
-using WriteOnlyfield = Register::FieldLocation<Addr, Register::maskFromRange(High, Low), Register::WriteOnlyAccess, FieldType>;
+using WriteOnlyField = Register::FieldLocation<Addr, Register::maskFromRange(High, Low), Register::WriteOnlyAccess, FieldType>;
 
 namespace DisplayControl {
 
@@ -548,7 +548,7 @@ constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
 
 }
-namespace WIN0H = Window0VerticalExtent;
+namespace WIN0V = Window0VerticalExtent;
 
 namespace Window1VerticalExtent {
 
@@ -558,7 +558,7 @@ constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
 
 }
-namespace WIN1H = Window1VerticalExtent;
+namespace WIN1V = Window1VerticalExtent;
 
 namespace WindowInsideControl {
 
@@ -687,7 +687,7 @@ enum class EnvelopeDirections {
     increase = 1
 };
 constexpr ReadWriteField<Addr, EnvelopeDirections, 11> envelopeDirection{};
-constexpr ReadWriteField<Addr, unsigend, 15, 12> envelopeInitialVolume{};
+constexpr ReadWriteField<Addr, unsigned, 15, 12> envelopeInitialVolume{};
 
 }
 namespace SOUND1CNT_H = Sound1ControlEnvelope;
@@ -730,7 +730,7 @@ enum class EnvelopeDirections {
     increase = 1
 };
 constexpr ReadWriteField<Addr, EnvelopeDirections, 11> envelopeDirection{};
-constexpr ReadWriteField<Addr, unsigend, 15, 12> envelopeInitialVolume{};
+constexpr ReadWriteField<Addr, unsigned, 15, 12> envelopeInitialVolume{};
 
 }
 namespace SOUND2CNT_H = Sound2ControlEnvelope;
@@ -811,7 +811,7 @@ enum class EnvelopeDirections {
     increase = 1
 };
 constexpr ReadWriteField<Addr, EnvelopeDirections, 11> envelopeDirection{};
-constexpr ReadWritefield<Addr, unsigned, 15, 12> initialVolume{};
+constexpr ReadWriteField<Addr, unsigned, 15, 12> initialVolume{};
 
 }
 namespace SOUND4CNT_L = Sound4ControlEnvelope;
@@ -1386,8 +1386,8 @@ constexpr ReadOnlyField<Addr, ButtonState, 4> buttonRight{};
 constexpr ReadOnlyField<Addr, ButtonState, 5> buttonLeft{};
 constexpr ReadOnlyField<Addr, ButtonState, 6> buttonUp{};
 constexpr ReadOnlyField<Addr, ButtonState, 7> buttonDown{};
-constexpr ReadOnlyField<Addr, ButtonState, 8> buttonRight{};
-constexpr ReadOnlyField<Addr, ButtonState, 9> buttonLeft{};
+constexpr ReadOnlyField<Addr, ButtonState, 8> buttonR{};
+constexpr ReadOnlyField<Addr, ButtonState, 9> buttonL{};
 
 }
 namespace KEYINPUT = KeypadInput;
@@ -1408,8 +1408,8 @@ constexpr ReadWriteField<Addr, Interrupt, 4> buttonRight{};
 constexpr ReadWriteField<Addr, Interrupt, 5> buttonLeft{};
 constexpr ReadWriteField<Addr, Interrupt, 6> buttonUp{};
 constexpr ReadWriteField<Addr, Interrupt, 7> buttonDown{};
-constexpr ReadWriteField<Addr, Interrupt, 8> buttonRight{};
-constexpr ReadWriteField<Addr, Interrupt, 9> buttonLeft{};
+constexpr ReadWriteField<Addr, Interrupt, 8> buttonR{};
+constexpr ReadWriteField<Addr, Interrupt, 9> buttonL{};
 constexpr ReadWriteField<Addr, unsigned, 14> irqEnabled{};
 enum class IrqCondition {
     logicalOr = 0,
@@ -1432,7 +1432,7 @@ constexpr ReadWriteField<Addr, unsigned, 4> scDirection{};
 constexpr ReadWriteField<Addr, unsigned, 5> sdDirection{};
 constexpr ReadWriteField<Addr, unsigned, 6> siDirection{};
 constexpr ReadWriteField<Addr, unsigned, 7> soDirection{};
-constexpr ReadWriteFIeld<Addr, unsigned, 8> siInterruptEnabled{};
+constexpr ReadWriteField<Addr, unsigned, 8> siInterruptEnabled{};
 enum class SerialIOMode {
     normal = 0,
     multiPlayer = 0,
@@ -1571,7 +1571,7 @@ enum class WaitStates81 {
     eightCycles = 0,
     oneCycle = 1
 };
-constexpr ReadWriteFiled<Addr, WaitStates81, 10> waitState2SecondAccess{};
+constexpr ReadWriteField<Addr, WaitStates81, 10> waitState2SecondAccess{};
 enum class PhiOutputs {
     disabled = 0,
     fourMHz = 1,    // 4.19 MHz
