@@ -325,6 +325,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG2PA = Bg2InternalParameterA;
 
@@ -340,6 +343,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG2PB = Bg2InternalParameterB;
@@ -357,6 +363,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG2PC = Bg2InternalParameterC;
 
@@ -372,6 +381,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG2PD = Bg2InternalParameterD;
@@ -429,6 +441,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG3PA = Bg2InternalParameterA;
 
@@ -444,6 +459,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG3PB = Bg2InternalParameterB;
@@ -461,6 +479,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG3PC = Bg2InternalParameterC;
 
@@ -476,6 +497,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG3PD = Bg2InternalParameterD;
@@ -527,6 +551,9 @@ using Addr = Register::Address<0x4000040, 0x00000000, 0x00000000, std::uint16_t>
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> x2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> x1{};
 
+// TODO: figure out why writing 0 to upper half (x2) gives garbage value
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> x{};
+
 }
 namespace WIN0H = Window0HorizontalExtent;
 
@@ -536,6 +563,7 @@ using Addr = Register::Address<0x4000042, 0x00000000, 0x00000000, std::uint16_t>
 
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> x2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> x1{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> x{};
 
 }
 namespace WIN1H = Window1HorizontalExtent;
@@ -546,6 +574,7 @@ using Addr = Register::Address<0x4000044, 0x00000000, 0x00000000, std::uint16_t>
 
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> y{};
 
 }
 namespace WIN0V = Window0VerticalExtent;
@@ -556,6 +585,7 @@ using Addr = Register::Address<0x4000046, 0x00000000, 0x00000000, std::uint16_t>
 
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> y{};
 
 }
 namespace WIN1V = Window1VerticalExtent;
