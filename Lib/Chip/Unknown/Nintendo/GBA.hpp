@@ -78,7 +78,7 @@ enum class GreenSwapModes {
     normal = 0,
     swap = 1
 };
-constexpr ReadWriteField<Addr, unsigned, 0> greenSwap{};
+constexpr ReadWriteField<Addr, GreenSwapModes, 0> greenSwap{};
 
 } // namespace GreenSwap
 
@@ -120,6 +120,18 @@ constexpr ReadOnlyField<Addr, unsigned, 7, 0> currentScanline{};
 }
 namespace VCOUNT = VerticalCounter;
 
+enum class BackgroundSizes : std::uint8_t {
+    reg32x32 = 0,
+    reg64x32 = 1,
+    reg32x64 = 2,
+    reg64x64 = 3,
+
+    aff16x16   = 0,
+    aff32x32   = 1,
+    aff64x64   = 2,
+    aff128x128 = 3
+};
+
 namespace Bg0Control {
 
 using Addr = Register::Address<0x4000008, 0x00000000, 0x00000000, std::uint16_t>;
@@ -143,7 +155,7 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
 namespace BG0CNT = Bg0Control;
@@ -171,10 +183,10 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr Register::FieldLocation<Addr, Register::maskFromRange(15, 14), Register::ReadWriteAccess, unsigned> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
-namespace BG1CNT = Bg0Control;
+namespace BG1CNT = Bg1Control;
 
 namespace Bg2Control {
 
@@ -199,10 +211,10 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
-namespace BG2CNT = Bg0Control;
+namespace BG2CNT = Bg2Control;
 
 namespace Bg3Control {
 
@@ -227,10 +239,10 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
-namespace BG3CNT = Bg0Control;
+namespace BG3CNT = Bg3Control;
 
 namespace Bg0HorizOffset {
 
