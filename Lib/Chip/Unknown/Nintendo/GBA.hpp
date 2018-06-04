@@ -78,7 +78,7 @@ enum class GreenSwapModes {
     normal = 0,
     swap = 1
 };
-constexpr ReadWriteField<Addr, unsigned, 0> greenSwap{};
+constexpr ReadWriteField<Addr, GreenSwapModes, 0> greenSwap{};
 
 } // namespace GreenSwap
 
@@ -120,6 +120,18 @@ constexpr ReadOnlyField<Addr, unsigned, 7, 0> currentScanline{};
 }
 namespace VCOUNT = VerticalCounter;
 
+enum class BackgroundSizes : std::uint8_t {
+    reg32x32 = 0,
+    reg64x32 = 1,
+    reg32x64 = 2,
+    reg64x64 = 3,
+
+    aff16x16   = 0,
+    aff32x32   = 1,
+    aff64x64   = 2,
+    aff128x128 = 3
+};
+
 namespace Bg0Control {
 
 using Addr = Register::Address<0x4000008, 0x00000000, 0x00000000, std::uint16_t>;
@@ -143,7 +155,7 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
 namespace BG0CNT = Bg0Control;
@@ -171,10 +183,10 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr Register::FieldLocation<Addr, Register::maskFromRange(15, 14), Register::ReadWriteAccess, unsigned> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
-namespace BG1CNT = Bg0Control;
+namespace BG1CNT = Bg1Control;
 
 namespace Bg2Control {
 
@@ -199,10 +211,10 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
-namespace BG2CNT = Bg0Control;
+namespace BG2CNT = Bg2Control;
 
 namespace Bg3Control {
 
@@ -227,10 +239,10 @@ constexpr ReadWriteField<Addr, unsigned, 12, 8> screenBaseBlock{};
 constexpr ReadWriteField<Addr, unsigned, 13> displayAreaOverflow{};
 
 /// Screen Size
-constexpr ReadWriteField<Addr, unsigned, 15, 14> screenSize{};
+constexpr ReadWriteField<Addr, BackgroundSizes, 15, 14> screenSize{};
 
 }
-namespace BG3CNT = Bg0Control;
+namespace BG3CNT = Bg3Control;
 
 namespace Bg0HorizOffset {
 
@@ -325,6 +337,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG2PA = Bg2InternalParameterA;
 
@@ -340,6 +355,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG2PB = Bg2InternalParameterB;
@@ -357,6 +375,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG2PC = Bg2InternalParameterC;
 
@@ -372,6 +393,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG2PD = Bg2InternalParameterD;
@@ -429,6 +453,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG3PA = Bg2InternalParameterA;
 
@@ -444,6 +471,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG3PB = Bg2InternalParameterB;
@@ -461,6 +491,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
 
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
+
 }
 namespace BG3PC = Bg2InternalParameterC;
 
@@ -476,6 +509,9 @@ constexpr ReadWriteField<Addr, unsigned, 14, 8> integer{};
 
 /// Sign
 constexpr ReadWriteField<Addr, unsigned, 15> sign{};
+
+/// Fixed-Point Value
+constexpr ReadWriteField<Addr, unsigned, 15, 0> value{};
 
 }
 namespace BG3PD = Bg2InternalParameterD;
@@ -527,6 +563,9 @@ using Addr = Register::Address<0x4000040, 0x00000000, 0x00000000, std::uint16_t>
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> x2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> x1{};
 
+// TODO: figure out why writing 0 to upper half (x2) gives garbage value
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> x{};
+
 }
 namespace WIN0H = Window0HorizontalExtent;
 
@@ -536,6 +575,7 @@ using Addr = Register::Address<0x4000042, 0x00000000, 0x00000000, std::uint16_t>
 
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> x2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> x1{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> x{};
 
 }
 namespace WIN1H = Window1HorizontalExtent;
@@ -546,6 +586,7 @@ using Addr = Register::Address<0x4000044, 0x00000000, 0x00000000, std::uint16_t>
 
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> y{};
 
 }
 namespace WIN0V = Window0VerticalExtent;
@@ -556,6 +597,7 @@ using Addr = Register::Address<0x4000046, 0x00000000, 0x00000000, std::uint16_t>
 
 constexpr WriteOnlyField<Addr, unsigned, 7, 0> y2{};
 constexpr WriteOnlyField<Addr, unsigned, 15, 8> y1{};
+constexpr WriteOnlyField<Addr, unsigned, 15, 0> y{};
 
 }
 namespace WIN1V = Window1VerticalExtent;
